@@ -64,6 +64,10 @@ public class RecordRelation {
         return sysno;
     }
 
+    public String getCuttedSysno() {
+        return sysno.substring(0, 3) + "/" + sysno.substring(3, 6) + "/" + sysno.substring(6, 9) + "/";
+    }
+
     /**
      * @param sysno the sysno to set
      */

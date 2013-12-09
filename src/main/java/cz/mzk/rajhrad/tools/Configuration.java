@@ -3,9 +3,6 @@ package cz.mzk.rajhrad.tools;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 
-import java.io.File;
-import java.util.Properties;
-
 /**
  * @author: Martin Rumanek
  * @version: 11/13/13
@@ -23,12 +20,18 @@ public class Configuration {
 
     }
 
-    public String getSshUserMarcExport() {
-        return configuration.getString("marcExportUser");
+    public String getPathPrivateKey() {
+        return configuration.getString("privateKey");
     }
 
-    public String getSshPasswordMarcExport() {
-        return configuration.getString("marcExportPassword");
+
+    public String getPrivateKeypassphrase() {
+        return configuration.getString("privateKeyPassphrase");
+    }
+
+    //marc export
+    public String getSshUserMarcExport() {
+        return configuration.getString("marcExportUser");
     }
 
     public String getSshHostMarcExport() {
@@ -39,6 +42,11 @@ public class Configuration {
         return configuration.getString("marcExportPath", "/work/aleph/data/aktualizace_zaznamu/mzk03.m21");
     }
 
+    public String getPasswordMarcExport() {
+        return configuration.getString("marcExportPassword");
+    }
+
+    //sysifos
     public String getSshUserWorkspace() {
         return configuration.getString("workspaceUser");
     }
@@ -47,8 +55,17 @@ public class Configuration {
         return configuration.getString("workspaceHost");
     }
 
-    public String getSshPasswordWorkspace() {
+    public String getPasswordWorkspace() {
         return configuration.getString("workspacePassword");
+    }
+
+    //imageserver
+    public String getImageServerUserWorkspace() {
+        return configuration.getString("imageserverUser");
+    }
+
+    public String getImageServerHostWorkspace() {
+        return configuration.getString("imageserverHost");
     }
 
 }

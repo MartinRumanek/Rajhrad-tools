@@ -157,6 +157,8 @@ public class RecordHolder {
         return sysno.substring(0, 3) + "/" + sysno.substring(3, 6) + "/" + sysno.substring(6, 9) + "/";
     }
 
+
+
     private String writeSingleImageserverScript(RecordRelation rr) {
         StringBuilder sb = new StringBuilder();
         for (String tifName : rr.getTifNames()) {
@@ -205,6 +207,32 @@ public class RecordHolder {
             }
         }
     }
+
+    public List<String> getImageserverLinkList() {
+        List<String> list = new ArrayList<>();
+        for (RecordRelation rr : getRecordRelations()) {
+            if (rr.isOk()) {
+                list.addAll(getImageserverLinkSingleList(rr));
+                writeSingleImageserverScript(rr);
+                for (RecordRelation sup : rr.getSupplements()) {
+                    list.addAll(getImageserverLinkSingleList(sup));
+                }
+            }
+        }
+
+        return list;
+    }
+
+    private List<String> getImageserverLinkSingleList(RecordRelation rr) {
+        List<String> list = new ArrayList<>();
+        for (String tifName : rr.getTifNames()) {
+            list.add(getImageserverLink(rr.getSysno(), tifName));
+        }
+
+        return list;
+    }
+
+
 
 
     public void writeAlephScript() {
